@@ -1,0 +1,365 @@
+[
+    {
+        "id": "ccb16a8f8b8660a8",
+        "type": "tab",
+        "label": "Flow 5",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "fb48d8b663b7b424",
+        "type": "inject",
+        "z": "ccb16a8f8b8660a8",
+        "name": "btn accensione",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 140,
+        "y": 100,
+        "wires": [
+            [
+                "3c169a224e1144c2"
+            ]
+        ]
+    },
+    {
+        "id": "3c169a224e1144c2",
+        "type": "switch",
+        "z": "ccb16a8f8b8660a8",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 330,
+        "y": 180,
+        "wires": [
+            [
+                "869e937e034265ee"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "869e937e034265ee",
+        "type": "change",
+        "z": "ccb16a8f8b8660a8",
+        "name": "accensione 1",
+        "rules": [
+            {
+                "t": "set",
+                "p": "accensione",
+                "pt": "flow",
+                "to": "{\"num_seriale\":0,\"stato\":{\"ready\":1,\"error\":0,\"busy\":0},\"temperatura\":10,\"carica\":100,\"velocita\":0}",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "accensione",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 490,
+        "y": 180,
+        "wires": [
+            [
+                "e66d9079c7ea62b8"
+            ]
+        ]
+    },
+    {
+        "id": "e66d9079c7ea62b8",
+        "type": "mqtt out",
+        "z": "ccb16a8f8b8660a8",
+        "name": "stato",
+        "topic": "supertoy/model/tecnobot/serial/pasolini/stato",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "1dbf1e24b28c6969",
+        "x": 650,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "cf0893751de1d213",
+        "type": "mqtt in",
+        "z": "ccb16a8f8b8660a8",
+        "name": "stato",
+        "topic": "supertoy/model/tecnobot/serial/pasolini/stato",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "1dbf1e24b28c6969",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 790,
+        "y": 180,
+        "wires": [
+            [
+                "ec5d6fd52301b34a"
+            ]
+        ]
+    },
+    {
+        "id": "ec5d6fd52301b34a",
+        "type": "debug",
+        "z": "ccb16a8f8b8660a8",
+        "name": "debug 18",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 920,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "b5d6a1ae5be06fe2",
+        "type": "rpi-gpio in",
+        "z": "ccb16a8f8b8660a8",
+        "name": "btn accensione",
+        "pin": "27",
+        "intype": "tri",
+        "debounce": "25",
+        "read": false,
+        "bcm": true,
+        "x": 140,
+        "y": 180,
+        "wires": [
+            [
+                "3c169a224e1144c2"
+            ]
+        ]
+    },
+    {
+        "id": "b46daf7ebe0393d8",
+        "type": "switch",
+        "z": "ccb16a8f8b8660a8",
+        "name": "",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "num"
+            },
+            {
+                "t": "eq",
+                "v": "0",
+                "vt": "num"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 330,
+        "y": 400,
+        "wires": [
+            [
+                "ade418915c4fa67e"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "ade418915c4fa67e",
+        "type": "change",
+        "z": "ccb16a8f8b8660a8",
+        "name": "incarico 1",
+        "rules": [
+            {
+                "t": "set",
+                "p": "azione",
+                "pt": "flow",
+                "to": "{\"num_seriale\":0,\"num_azioni\":1}",
+                "tot": "json"
+            },
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "azione",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 480,
+        "y": 400,
+        "wires": [
+            [
+                "5ca10382c9536b45"
+            ]
+        ]
+    },
+    {
+        "id": "5ca10382c9536b45",
+        "type": "mqtt out",
+        "z": "ccb16a8f8b8660a8",
+        "name": "incarico",
+        "topic": "supertoy/model/tecnobot/serial/pasolini/incarico",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "1dbf1e24b28c6969",
+        "x": 640,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "a91b06bac4966214",
+        "type": "mqtt in",
+        "z": "ccb16a8f8b8660a8",
+        "name": "incarico",
+        "topic": "supertoy/model/tecnobot/serial/pasolini/incarico",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "1dbf1e24b28c6969",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 790,
+        "y": 400,
+        "wires": [
+            [
+                "3636ce65a6e9839a"
+            ]
+        ]
+    },
+    {
+        "id": "3636ce65a6e9839a",
+        "type": "debug",
+        "z": "ccb16a8f8b8660a8",
+        "name": "debug 19",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 920,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "142f246dbc532d25",
+        "type": "rpi-gpio in",
+        "z": "ccb16a8f8b8660a8",
+        "name": "btn incarico",
+        "pin": "22",
+        "intype": "tri",
+        "debounce": "25",
+        "read": false,
+        "bcm": true,
+        "x": 130,
+        "y": 400,
+        "wires": [
+            [
+                "b46daf7ebe0393d8"
+            ]
+        ]
+    },
+    {
+        "id": "f342306dd7cf134a",
+        "type": "inject",
+        "z": "ccb16a8f8b8660a8",
+        "name": "btn incarico",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "1",
+        "payloadType": "num",
+        "x": 130,
+        "y": 340,
+        "wires": [
+            [
+                "b46daf7ebe0393d8"
+            ]
+        ]
+    },
+    {
+        "id": "1dbf1e24b28c6969",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "broker.hivemq.com",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]
